@@ -15,7 +15,10 @@ app.get("/repositories", (request, response) => {
 });
 
 app.post("/repositories", (request, response) => {
-  // TODO
+  const {title, url, techs} = request.body;
+  console.log(request.body);
+
+  return response.json({message: 'retorno temporario'});
 });
 
 app.put("/repositories/:id", (request, response) => {
