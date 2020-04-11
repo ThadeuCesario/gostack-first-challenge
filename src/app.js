@@ -14,7 +14,7 @@ function updateLike(request, response, next){
   const repositoryIndex = repositories.findIndex(repository => repository.id === id);
 
   if(repositoryIndex < 0){
-    return response.status(404).json({message: 'Repository not found'});
+    return response.status(400).json({message: 'Repository not found'});
   }
 
   repositories[repositoryIndex].likes = repositories[repositoryIndex].likes + 1;
@@ -39,7 +39,7 @@ app.put("/repositories/:id", (request, response) => {
   const repositoryIndex = repositories.findIndex(repositorie => repositorie.id === id);
 
   if(repositoryIndex < 0){
-    return response.status(404).json({message: 'Repository not found'});
+    return response.status(400).json({message: 'Repository not found'});
   }
   
   repositories[repositoryIndex].title = title;
@@ -55,7 +55,7 @@ app.delete("/repositories/:id", (request, response) => {
   const repositoryIndex = repositories.findIndex(repositorie => repositorie.id === id);
 
   if(repositoryIndex < 0){
-    return response.status(404).json({message: 'Repository not found'});
+    return response.status(400).json({message: 'Repository not found'});
   }
 
   repositories.splice(repositoryIndex, 1);
