@@ -23,11 +23,26 @@ app.post("/repositories", (request, response) => {
 });
 
 app.put("/repositories/:id", (request, response) => {
-  // TODO
+  const {id} = request.params;
+
+  if(repositories.findIndex(repositorie => repositorie.id === id)){
+    repositories.splice(repositorie, 1);
+    return response.json({message: 'its the same ID'})
+  }
+
+  return response.json({message: 'Element not found'});
 });
 
 app.delete("/repositories/:id", (request, response) => {
-  // TODO
+  const {id} = request.params;
+  const repositoryIndex = repositories.findIndex(repositorie => repositorie.id === id);
+
+  if(repositoryIndex < 0){
+    return response.status(404).json({message: 'Repository not found'});
+  }
+
+  repositories.splice(repositoryIndex, 1);
+  return response.status(204).json({});
 });
 
 app.post("/repositories/:id/like", (request, response) => {
